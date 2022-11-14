@@ -57,24 +57,16 @@ async function init() {
   _checkEnv();
 
   try {
-    const age = calculateAge("07/21/2005");
-
     const total = await getWakatimeTotalTime();
     if (!total) return;
 
     const today = format(Date.now(), "yyyy-MM-dd");
-    const bioMessage = `${age}y/o programmer and student - Frontend focused web dev. Coded Today (${today}): ${total}`;
+    const bioMessage = `aka Alireza Madani, web developer, coded ${total} today(${today})`;
 
     await updateBio(bioMessage);
   } catch (e) {
     console.error(e);
   }
-}
-
-function calculateAge(birthDate: string): string {
-  return ((Date.now() - new Date(birthDate).getTime()) / (60 * 60 * 24 * 365.25 * 1000))
-    .toString()
-    .split(".")[0];
 }
 
 /* updates bio every 15minutes */
