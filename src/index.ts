@@ -61,7 +61,7 @@ async function init() {
     if (!total) return;
 
     const today = format(Date.now(), "yyyy-MM-dd");
-    const bioMessage = `aka Alireza Madani, web developer, coded ${total} today(${today})`;
+    const bioMessage = `the evil language(JS) developer, coded ${total} today(${today})`;
 
     await updateBio(bioMessage);
   } catch (e) {
