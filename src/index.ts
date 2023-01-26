@@ -24,9 +24,14 @@ async function getWakatimeTotalTime(): Promise<string | undefined> {
       },
     });
 
-    const grandTotal: WakatimeItem["grand_total"] = res.data.data[0].grand_total;
-
-    return grandTotal.text;
+    const data = res.data.data[0];
+    const h = data.grand_total.hours,
+      m = data.grand_total.minutes;
+    if (h > 0) {
+      return (h + m / 60).toFixed(1) + " hours";
+    } else {
+      return m + " minutes";
+    }
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : "Unknown";
     console.error(`Could not get Wakatime stats: ${errorMessage}`);
