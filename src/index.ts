@@ -28,7 +28,7 @@ async function getWakatimeTotalTime(): Promise<string | undefined> {
     const h = data.grand_total.hours,
       m = data.grand_total.minutes;
     if (h > 0) {
-      return (h + m / 60).toFixed(1) + " hours";
+      return (h + m / 60).toFixed(1) + " hour";
     } else {
       return m + " minutes";
     }
