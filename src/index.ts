@@ -11,7 +11,7 @@ const ENDPOINTS = {
   WAKATIME: `${WAKATIME_API_URL}/users/current/summaries`,
 } as const;
 
-async function getWakatimeTotalTime(): Promise<string | undefined> {
+async function getWakatimeTotalTime(): Promise<string | undefined | null> {
   try {
     const res = await axios({
       method: "GET",
@@ -28,9 +28,14 @@ async function getWakatimeTotalTime(): Promise<string | undefined> {
     const h = data.grand_total.hours,
       m = data.grand_total.minutes;
     if (h > 0) {
+      if ((h + m) % 60 === 0) {
+        return (h + m) / 60 + " hour";
+      }
       return (h + m / 60).toFixed(1) + " hour";
+    } else if (m == 0) {
+      return null;
     } else {
-      return m + " minutes";
+      return m + " minute";
     }
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : "Unknown";
@@ -63,10 +68,15 @@ async function init() {
 
   try {
     const total = await getWakatimeTotalTime();
-    if (!total) return;
-
     const today = format(Date.now(), "yyyy-MM-dd");
-    const bioMessage = `aka Alireza Madani, coded ${total} today(${today})`;
+    let message = "";
+    if (total === null) {
+      message = "didn't touch the keyboard today :)";
+    } else {
+      message = `coded ${total} today(${today})`;
+    }
+
+    const bioMessage = `aka Alireza Madani, ${message}`;
 
     await updateBio(bioMessage);
   } catch (e) {
