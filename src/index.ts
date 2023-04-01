@@ -1,7 +1,5 @@
 import "dotenv/config";
 import axios from "axios";
-import format from "date-fns/format/index.js";
-import { WakatimeItem } from "./interfaces.js";
 
 const GITHUB_API_URL = "https://api.github.com";
 const WAKATIME_API_URL = "https://wakatime.com/api/v1";
@@ -10,6 +8,29 @@ const ENDPOINTS = {
   GITHUB: `${GITHUB_API_URL}/user`,
   WAKATIME: `${WAKATIME_API_URL}/users/current/summaries`,
 } as const;
+
+function getToday() {
+  const localDate = new Date();
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const currentMonth = months[localDate.getMonth()];
+  const currentDay = localDate.getDate();
+
+  return currentMonth + " " + currentDay;
+}
 
 async function getWakatimeTotalTime(): Promise<string | undefined | null> {
   try {
@@ -29,13 +50,13 @@ async function getWakatimeTotalTime(): Promise<string | undefined | null> {
       m = data.grand_total.minutes;
     if (h > 0) {
       if ((h + m) % 60 === 0) {
-        return (h + m) / 60 + " hours";
+        return (h + m) / 60 + "h";
       }
-      return (h + m / 60).toFixed(1) + " hours";
+      return (h + m / 60).toFixed(1) + "h";
     } else if (m == 0) {
       return null;
     } else {
-      return m + " minutes";
+      return m + "m";
     }
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : "Unknown";
@@ -68,7 +89,7 @@ async function init() {
 
   try {
     const total = await getWakatimeTotalTime();
-    const today = format(Date.now(), "yyyy-MM-dd");
+    const today = getToday();
     let message = "";
     if (total === null) {
       message = "didn't touch the keyboard today :)";
@@ -76,7 +97,7 @@ async function init() {
       message = `coded ${total} today(${today})`;
     }
 
-    const bioMessage = `Fornt-End Developer, ${message}`;
+    const bioMessage = `Front-End Developer, ${message}`;
 
     await updateBio(bioMessage);
   } catch (e) {
