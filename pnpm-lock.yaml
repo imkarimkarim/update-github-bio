@@ -4,7 +4,6 @@ specifiers:
   '@casper124578/eslint-config': ^3.0.0
   '@types/node': ^17.0.21
   axios: ^0.26.1
-  date-fns: ^2.28.0
   dotenv: ^16.0.0
   esbuild: ^0.14.25
   eslint: ^8.10.0
@@ -12,7 +11,6 @@ specifiers:
 
 dependencies:
   axios: 0.26.1
-  date-fns: 2.29.3
   dotenv: 16.0.3
 
 devDependencies:
@@ -425,11 +423,6 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
-
-  /date-fns/2.29.3:
-    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
-    engines: {node: '>=0.11'}
-    dev: false
 
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
