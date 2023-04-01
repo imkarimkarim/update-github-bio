@@ -29,13 +29,13 @@ async function getWakatimeTotalTime(): Promise<string | undefined | null> {
       m = data.grand_total.minutes;
     if (h > 0) {
       if ((h + m) % 60 === 0) {
-        return (h + m) / 60 + " hour";
+        return (h + m) / 60 + " hours";
       }
-      return (h + m / 60).toFixed(1) + " hour";
+      return (h + m / 60).toFixed(1) + " hours";
     } else if (m == 0) {
       return null;
     } else {
-      return m + " minute";
+      return m + " minutes";
     }
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : "Unknown";
@@ -76,7 +76,7 @@ async function init() {
       message = `coded ${total} today(${today})`;
     }
 
-    const bioMessage = `aka Alireza Madani, ${message}`;
+    const bioMessage = `Fornt-End Developer, ${message}`;
 
     await updateBio(bioMessage);
   } catch (e) {
