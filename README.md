@@ -8,7 +8,7 @@ Automatically updates your GitHub bio with your WakaTime stats every 15 minutes
 
 ### Usage
 
-1. Clone the repo: `git clone https://github.com/Dev-CasperTheGhost/update-github-bio`
+1. Clone the repo: `git clone https://github.com/imkarimkarim/update-github-bio`
 2. Install the dependencies: `npm install`
 3. Copy and rename `.env.example` to `.env`
 4. Update your credentials in `.env`
