@@ -97,7 +97,7 @@ async function init() {
       message = `coded ${total} today(${today})`;
     }
 
-    const bioMessage = `Front-End Developer, ${message}`;
+    const bioMessage = `internet crawler 🔭, ${message}`;
 
     await updateBio(bioMessage);
   } catch (e) {
