@@ -91,8 +91,8 @@ async function init() {
     const total = await getWakatimeTotalTime();
     const today = getToday();
     let message = "";
-    if (total === null) {
-      message = "didn't touch the keyboard today :)";
+    if (total === null || typeof total === "undefined") {
+      message = "didn't touch the keyboard today :), yet...";
     } else {
       message = `coded ${total} today(${today})`;
     }
