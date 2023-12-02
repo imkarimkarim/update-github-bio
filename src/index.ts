@@ -91,15 +91,13 @@ async function init() {
     const total = await getWakatimeTotalTime();
     const today = getToday();
     let message = "";
-    if (total === null || typeof total === "undefined") {
-      message = "didn't touch the keyboard today :), yet...";
-    } else {
+    if (total !== null || typeof total !== "undefined" || total !== "undefined") {
       message = `coded ${total} today(${today})`;
+      const bioMessage = `internet crawler 🔭, ${message}`;
+      await updateBio(bioMessage);
     }
 
-    const bioMessage = `internet crawler 🔭, ${message}`;
 
-    await updateBio(bioMessage);
   } catch (e) {
     console.error(e);
   }
