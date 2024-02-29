@@ -1,5 +1,14 @@
 import "dotenv/config";
 import axios from "axios";
+import fs from "fs";
+
+const log = (msg: string) => {
+  msg = new Date().toLocaleString() + " - " + msg;
+  fs.appendFile("log.txt", msg, (err) => {
+    if (err) throw err;
+    console.log(msg);
+  });
+};
 
 const GITHUB_API_URL = "https://api.github.com";
 const WAKATIME_API_URL = "https://wakatime.com/api/v1";
@@ -60,7 +69,7 @@ async function getWakatimeTotalTime(): Promise<string | undefined | null> {
     }
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : "Unknown";
-    console.error(`Could not get Wakatime stats: ${errorMessage}`);
+    log(`Could not get Wakatime stats: ${errorMessage}`);
   }
 }
 
@@ -78,9 +87,10 @@ async function updateBio(message: string) {
         bio: message,
       },
     });
+    log(`updated the bio message, (bioMessage: ${message}, type: ${typeof message})`);
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : "Unknown";
-    console.error(`Could not update GitHub bio: ${errorMessage}`);
+    log(`Could not update GitHub bio: ${errorMessage}`);
   }
 }
 
@@ -97,7 +107,7 @@ async function init() {
       const bioMessage = `internet crawler 🔭, ${message}`;
       await updateBio(bioMessage);
     } else {
-      console.info("didn't since total was undefined!");
+      log("didn't since total was undefined!");
     }
   } catch (e) {
     console.error(e);
