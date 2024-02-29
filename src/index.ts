@@ -4,7 +4,7 @@ import fs from "fs";
 
 const log = (msg: string) => {
   msg = new Date().toLocaleString() + " - " + msg;
-  fs.appendFile("log.txt", msg, (err) => {
+  fs.appendFile("log.txt", msg + "\n", (err) => {
     if (err) throw err;
     console.log(msg);
   });
