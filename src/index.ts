@@ -103,7 +103,7 @@ async function init() {
     let message = "";
 
     if (typeof total != "undefined") {
-      message = `coded ${total} today(${today})`;
+      message = `worked ${total} today(${today})`;
       const bioMessage = `internet crawler 🔭, ${message}`;
       await updateBio(bioMessage);
     } else {
