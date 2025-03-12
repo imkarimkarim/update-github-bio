@@ -21,18 +21,18 @@ const ENDPOINTS = {
 function getToday() {
   const localDate = new Date();
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   const currentMonth = months[localDate.getMonth()];
@@ -104,7 +104,7 @@ async function init() {
 
     if (typeof total != "undefined") {
       message = `worked ${total} today(${today})`;
-      const bioMessage = `internet crawler 🔭, ${message}`;
+      const bioMessage = `app maker, ${message}`;
       await updateBio(bioMessage);
     } else {
       log("didn't since total was undefined!");
