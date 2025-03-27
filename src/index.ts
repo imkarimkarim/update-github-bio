@@ -103,8 +103,8 @@ async function init() {
     let message = "";
 
     if (typeof total != "undefined") {
-      message = `worked ${total} today(${today})`;
-      const bioMessage = `app maker, ${message}`;
+      message = `coded ${total} today(${today})`;
+      const bioMessage = `internet crawler 🔭 / GNU/Linux user, ${message}`;
       await updateBio(bioMessage);
     } else {
       log("didn't since total was undefined!");
